@@ -1,0 +1,25 @@
+{
+  "name": "line-research-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kkanazaw/line-research-bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "private",
+  "bugs": {
+    "url": "https://github.com/kkanazaw/line-research-bot/issues"
+  },
+  "homepage": "https://github.com/kkanazaw/line-research-bot#readme",
+  "dependencies": {
+    "@line/bot-sdk": "^6.2.1",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3"
+  }
+}
