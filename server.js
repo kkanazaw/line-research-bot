@@ -7,7 +7,7 @@ require('dotenv').config();
 
 const config = {
     channelSecret: process.env.channelSecret,
-    channelAccessToken: process.env.channelAccessToken
+    channelAccessToken: process.env.LINE_ACCESS_TOKEN
 };
 
 const app = express();
@@ -17,6 +17,10 @@ app.post('/webhook', line.middleware(config), (req, res) => {
     Promise
       .all(req.body.events.map(handleEvent))
       .then((result) => res.json(result));
+});
+
+app.get('/hoge', (req, res)=>{
+    res.send("  HelloWorld");
 });
 
 const client = new line.Client(config);
