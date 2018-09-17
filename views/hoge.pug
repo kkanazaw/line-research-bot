@@ -1,11 +1,50 @@
 html
   head
     title= title
+    script(src=`https://maps.googleapis.com/maps/api/js?key=${google_map_api_key}`)
     script.
-      if( navigator.geolocation ){
-        alert("ok");
-      }else{
-        alert("ng");
+      //if( navigator.geolocation ){
+        //alert("ok");
+      //}else{
+        //alert("ng");
+      //}
+
+      navigator.geolocation.getCurrentPosition(success, error, option);
+
+      function success(position){
+        /*現在位置が取得できた時に実行*/
+        var data = position.coords;
+        // 必要な緯度経度だけ取得
+        var lat = data.latitude;
+        var lng = data.longitude;
+        //Google Mapsで住所を取得
+        var geocoder = new google.maps.Geocoder();
+        latlng = new google.maps.LatLng(lat, lng);
+        geocoder.geocode({'latLng': latlng}, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            document.getElementById('address').innerHTML = results[0].formatted_address;
+          }else {
+            alert("エラー" + status);
+          }
+        });
       }
+      /*現在位置の取得に失敗した時に実行*/
+      function error(error){
+        var errorMessage = {
+          0: "原因不明のエラーが発生しました。",
+          1: "位置情報が許可されませんでした。",
+          2: "位置情報が取得できませんでした。",
+          3: "タイムアウトしました。",
+        } ;
+        //とりあえずalert
+        alert( errorMessage[error.code]);
+      }
+      // オプション(省略可)
+      var option = {
+        "enableHighAccuracy": false,
+        "timeout": 6000 ,
+        "maximumAge": 0 ,
+      };
   body
     h1= message
+    p#address テスト

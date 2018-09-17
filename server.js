@@ -22,7 +22,7 @@ app.post('/webhook', line.middleware(config), (req, res) => {
 });
 
 app.get('/hoge', (req, res)=>{
-    res.render("hoge",  { title: 'Hey', message: 'Hello there!'});
+    res.render("hoge",  { title: 'Hey', message: 'Hello there!', google_map_api_key: process.env.GOOGLE_MAP_API_KEY});
 });
 
 const client = new line.Client(config);
