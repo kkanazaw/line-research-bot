@@ -12,6 +12,8 @@ const config = {
 
 const app = express();
 
+app.set('view engine', 'pug');
+
 app.post('/webhook', line.middleware(config), (req, res) => {
     console.log(req.body.events);
     Promise
@@ -20,7 +22,7 @@ app.post('/webhook', line.middleware(config), (req, res) => {
 });
 
 app.get('/hoge', (req, res)=>{
-    res.send("  HelloWorld");
+    res.render("hoge",  { title: 'Hey', message: 'Hello there!'});
 });
 
 const client = new line.Client(config);
